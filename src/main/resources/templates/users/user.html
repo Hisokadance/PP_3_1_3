@@ -10,7 +10,7 @@
 <hr/>
 <p th:text="${'ID: ' + user.id}">ID</p>
 <p th:text="${'Username: ' + user.username}">Username</p>
-<p th:text="${'Role: ' + user.role}">Role</p>
+<p th:text="${'Role: ' + user.roles}">Role</p>
 <hr/>
 <form th:method="post" th:action="@{/logout}">
     <input type="submit" value="Logout">

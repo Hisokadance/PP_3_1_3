@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.igor.PP_3_1_3.model.User;
-import ru.igor.PP_3_1_3.service.UserServices;
+import ru.igor.PP_3_1_3.services.UserServices;
 
 import java.security.Principal;
 
@@ -25,14 +25,14 @@ public class UserController {
     @GetMapping
     public String showBasePage(Model model, Principal principal) {
         String username = principal.getName();
-        User user = userServices.getUserByUsername(username);
+        User user = userServices.findByUsername(username);
         model.addAttribute("user", user);
         return "users/news";
     }
 
     @GetMapping("/info/{id}")
     public String userInfo(@PathVariable("id") Long id, Model model) {
-        User user = userServices.getUser(id);
+        User user = userServices.findOne(id);
         model.addAttribute("user", user);
         return "users/user";
     }

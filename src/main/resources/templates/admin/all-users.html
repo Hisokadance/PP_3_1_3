@@ -6,29 +6,34 @@
     <title>All Users</title>
 </head>
 <body>
-<h1>List users</h1>
+<h1>Admin page</h1>
 <hr/>
 <br/>
 <table>
     <tr>
         <th>ID</th>
         <th>NAME</th>
-        <th>SURNAME</th>
+        <th>ROLE</th>
         <th colspan="2">optional</th>
     </tr>
-    <tr th:each="u : ${user}">
+
+    <tr th:each="u : ${users}">
 
         <td th:text="${u.getId()}">текущее id</td>
         <td th:text="${u.getUsername()}">текущее имя</td>
-        <td th:text="${u.getRole()}">текущая роль</td>
+        <td>
+            <span th:each="role : ${u.roles}" th:text="${role.name}">
+            текущая роль
+        </span>
+        </td>
 
         <td>
-            <form th:action="@{'/edit/' + ${u.getId()}}">
+            <form th:action="@{'admin/edit/' + ${u.getId()}}">
                 <button type="submit">update</button>
             </form>
 
         <td>
-            <form th:method="POST" th:action="@{'/delete/' + ${u.getId()}}">
+            <form th:method="POST" th:action="@{'admin/delete/' + ${u.getId()}}">
                 <button type="submit">delete</button>
             </form>
         </td>

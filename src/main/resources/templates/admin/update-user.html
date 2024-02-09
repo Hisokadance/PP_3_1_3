@@ -8,16 +8,19 @@
 <h1>Update User</h1>
 <hr/>
 <br/>
-<form th:method="POST" th:action="@{/update}" th:object="${userUpdate}">
+<form th:method="POST" th:action="@{/admin/update}" th:object="${user}">
 
-    <input type="hidden" th:field="*{id}" th:value="${userUpdate.getId()}"/>
+    <input type="hidden" th:field="*{id}" th:value="${user.getId()}"/>
 
     <label for="name">Enter name: </label>
     <input type="text" th:field="*{username}" id="name"/>
     <br/>
 
-    <label for="role">Enter role: </label>
-    <input type="text" th:field="*{role}" id="role"/>
+    <label for="role">Select role: </label>
+    <select th:field="*{roles}" id="role" >
+        <option value="1" th:selected="${user.roles.contains('ROLE_ADMIN')}">ROLE_ADMIN</option>
+        <option value="2" th:selected="${user.roles.contains('ROLE_USER')}">ROLE_USER</option>
+    </select>
     <br/>
 
     <label for="password">Enter password: </label>
